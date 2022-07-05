@@ -57,8 +57,7 @@ DELETE FROM animals
 ROLLBACK
 
 -- Delete all animals born after Jan 1st, 2022.
-DELETE FROM animals
-WHERE date_of_birth > '2022-01-01';
+DELETE FROM animals WHERE date_of_birth > '2022-01-01';
 
 -- Create a savepoint for the transaction.
 SAVEPOINT SP1
@@ -99,5 +98,5 @@ SELECT (MAX(weight_kg), MIN(weight_kg), species) FROM animals GROUP BY species
 
 -- What is the average number of escape attempts per animal type of those born between 1990 and 2000?
 SELECT AVG(escape_attempts), species FROM animals
-WHERE date_of_birth > '1990-01-01' AND date_of_birth < '2000-01-01'
-GROUP BY species
+  GROUP BY species
+  WHERE date_of_birth >= '1990-01-01' AND date_of_birth <= '2000-12-31'
