@@ -51,7 +51,7 @@ WHERE name NOT LIKE '%mon'
 COMMIT;
 
 -- Inside a transaction delete all records in the animals table, then roll back the transaction.
-BEGIN
+BEGIN;
 
 DELETE FROM animals
 ROLLBACK
