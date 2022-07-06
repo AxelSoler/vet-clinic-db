@@ -40,3 +40,25 @@ ALTER TABLE animals
 
 ALTER TABLE animals 
     ADD COLUMN owner_id integer REFERENCES owners(id)
+
+-- many to many tables
+
+CREATE TABLE vets (
+    id SERIAL PRIMARY KEY,
+    name varchar(255),
+    age int,
+    date_of_graduation date
+);
+
+CREATE TABLE specializations (
+    id SERIAL PRIMARY KEY,
+    vet_id integer REFERENCES vets(id),
+    species_id integer REFERENCES species(id)
+);
+
+CREATE TABLE visits (
+    id SERIAL PRIMARY KEY,
+    animal_id integer REFERENCES animals(id),
+    vet_id integer REFERENCES vets(id),
+    date date
+);
